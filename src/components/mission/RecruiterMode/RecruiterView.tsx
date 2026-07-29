@@ -351,7 +351,7 @@ export default function RecruiterView() {
             Experience & Education
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            {[...timeline].reverse().map((event) => {
+            {timeline.map((event) => {
               const IconComp = iconMap[event.iconName] || Briefcase;
               return (
                 <div

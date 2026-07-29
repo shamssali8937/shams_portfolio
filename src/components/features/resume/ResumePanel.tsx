@@ -307,7 +307,7 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                 aria-hidden="true"
               />
 
-              {[...timeline].reverse().map((event, idx) => {
+              {timeline.map((event, idx) => {
                 const ItemIcon = iconMap[event.iconName] || Briefcase;
                 const dotColor =
                   event.type === "education"

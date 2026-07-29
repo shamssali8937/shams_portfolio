@@ -12,6 +12,7 @@ export interface TimelineEvent {
   iconName: "GraduationCap" | "Code" | "Briefcase" | "Rocket" | "Trophy" | "Award";
 }
 
+// Education first, followed by Experience & Achievements
 export const timeline: TimelineEvent[] = [
   {
     id: "bsit-sargodha",
@@ -30,24 +31,6 @@ export const timeline: TimelineEvent[] = [
       "Computer Networks & IT Admin",
     ],
     iconName: "GraduationCap",
-  },
-  {
-    id: "careerbridge-dev",
-    type: "work",
-    title: "Lead Full-Stack Developer",
-    organization: "CareerBridge Job Portal",
-    location: "Sargodha, Pakistan",
-    period: "2026",
-    year: 2026,
-    description:
-      "Engineered a complete recruitment platform for job seekers and recruiters with Google OAuth, JWT authorization, role-based access control, and Cloudinary media management.",
-    highlights: [
-      "Google OAuth & JWT Auth",
-      "Role-Based Dashboards (Admin/Recruiter/Candidate)",
-      "Cloudinary Resume & Media Integration",
-      "Redux Toolkit State Management",
-    ],
-    iconName: "Code",
   },
   {
     id: "whitedavid23-internship",
@@ -84,6 +67,24 @@ export const timeline: TimelineEvent[] = [
       "Resend Email Notifications & JWT",
     ],
     iconName: "Rocket",
+  },
+  {
+    id: "careerbridge-dev",
+    type: "work",
+    title: "Lead Full-Stack Developer",
+    organization: "CareerBridge Job Portal",
+    location: "Sargodha, Pakistan",
+    period: "2026",
+    year: 2026,
+    description:
+      "Engineered a complete recruitment platform for job seekers and recruiters with Google OAuth, JWT authorization, role-based access control, and Cloudinary media management.",
+    highlights: [
+      "Google OAuth & JWT Auth",
+      "Role-Based Dashboards (Admin/Recruiter/Candidate)",
+      "Cloudinary Resume & Media Integration",
+      "Redux Toolkit State Management",
+    ],
+    iconName: "Code",
   },
   {
     id: "leadership-sports",
