@@ -28,7 +28,7 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
-          style={{ padding: "2.5rem", maxWidth: "600px" }}
+          style={{ maxWidth: "600px" }}
         >
           {/* Close button */}
           <button

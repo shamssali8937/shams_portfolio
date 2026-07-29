@@ -32,7 +32,7 @@ export default function ProjectsPanel({ onClose, initialProject }: ProjectsPanel
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
-          style={{ padding: "2.5rem" }}
+
         >
           {/* Header */}
           <div

@@ -35,7 +35,7 @@ export default function BlogPanel({ onClose }: BlogPanelProps) {
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
-          style={{ padding: "2.5rem", maxWidth: "580px" }}
+          style={{ maxWidth: "580px" }}
         >
           <div
             style={{
