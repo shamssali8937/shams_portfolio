@@ -1,29 +1,61 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import {
+  X,
+  Download,
+  GraduationCap,
+  Briefcase,
+  Award,
+  Code,
+  Rocket,
+  Trophy,
+  ShieldCheck,
+  CheckCircle2,
+  LucideIcon,
+} from "lucide-react";
 import { profile } from "@/data/profile";
-import { timeline } from "@/data/timeline";
+import { timeline, TimelineEvent } from "@/data/timeline";
 
 interface ResumePanelProps {
   onClose: () => void;
 }
 
-const typeColors: Record<string, string> = {
-  education: "#5E7C7B",
-  work: "#4A9B8E",
-  freelance: "#D97757",
-  certification: "#7C6FAE",
-  achievement: "#E6B17E",
+const iconMap: Record<string, LucideIcon> = {
+  GraduationCap,
+  Code,
+  Briefcase,
+  Rocket,
+  Trophy,
+  Award,
 };
 
-const typeLabels: Record<string, string> = {
-  education: "EDU",
-  work: "WORK",
-  freelance: "FREELANCE",
-  certification: "CERT",
-  achievement: "WIN",
-};
+const certificates = [
+  {
+    title: "ISO 9001:2015 Certified Internship Certificate",
+    issuer: "WhiteDavid23 Academy",
+    date: "July 2026",
+    description: "3-Month AI-Powered Full Stack Web Development Internship & PGNexus Capstone Project completion.",
+    Icon: ShieldCheck,
+    color: "#4A9B8E",
+  },
+  {
+    title: "Bachelor of Science in Information Technology",
+    issuer: "University of Sargodha",
+    date: "2022 – 2026",
+    description: "Graduated with CGPA 3.52 / 4.00 in Web Engineering, Database Systems & IT Infrastructure.",
+    Icon: GraduationCap,
+    color: "#5E7C7B",
+  },
+  {
+    title: "Open Source Contributor & Competitive Athlete",
+    issuer: "Developer Communities & Sports",
+    date: "2026",
+    description: "Active contributor to open-source software projects; Competitive basketball athlete demonstrating teamwork & leadership.",
+    Icon: Trophy,
+    color: "#D97757",
+  },
+];
 
 export default function ResumePanel({ onClose }: ResumePanelProps) {
   return (
@@ -53,7 +85,9 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-start",
-              marginBottom: "2rem",
+              marginBottom: "1.75rem",
+              flexWrap: "wrap",
+              gap: "1rem",
             }}
           >
             <div>
@@ -67,7 +101,7 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   textTransform: "uppercase",
                 }}
               >
-                ◉ MISSION LOG
+                MISSION LOG & CREDENTIALS
               </div>
               <h2
                 style={{
@@ -78,20 +112,24 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Experience & Education
+                Resume & Achievements
               </h2>
             </div>
+
             <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
               <a
                 href={profile.resumeUrl}
                 download
                 style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
                   fontFamily: "var(--font-jetbrains)",
                   fontSize: "11px",
                   letterSpacing: "0.1em",
                   color: "var(--color-surface)",
                   background: "var(--color-primary)",
-                  padding: "8px 16px",
+                  padding: "9px 18px",
                   borderRadius: "var(--radius-full)",
                   textDecoration: "none",
                   textTransform: "uppercase",
@@ -99,7 +137,8 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   cursor: "pointer",
                 }}
               >
-                ↓ Download PDF
+                <Download size={13} />
+                Download PDF
               </a>
               <button
                 onClick={onClose}
@@ -115,7 +154,6 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   justifyContent: "center",
                   cursor: "pointer",
                   color: "var(--color-muted)",
-                  transition: "all 0.2s",
                 }}
               >
                 <X size={16} />
@@ -123,158 +161,321 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
             </div>
           </div>
 
-          {/* Timeline */}
-          <div style={{ position: "relative", paddingLeft: "1.5rem" }}>
-            {/* Vertical line */}
-            <div
-              style={{
-                position: "absolute",
-                left: "6px",
-                top: 0,
-                bottom: 0,
-                width: "1px",
-                background:
-                  "linear-gradient(180deg, var(--color-accent), var(--color-secondary), transparent)",
-                opacity: 0.3,
-              }}
-              aria-hidden="true"
-            />
+          {/* Pilot Summary Stat Boxes */}
+          <div
+            style={{
+              background: "var(--color-surface-2)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "var(--radius-xl)",
+              padding: "1.25rem 1.5rem",
+              marginBottom: "2rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "1rem",
+            }}
+          >
+            <div>
+              <div style={{ fontSize: "10px", fontFamily: "var(--font-jetbrains)", color: "var(--color-secondary)", fontWeight: 600, textTransform: "uppercase", marginBottom: "3px", letterSpacing: "0.08em" }}>
+                DEGREE CGPA
+              </div>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--color-primary)" }}>
+                3.52 / 4.00
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "var(--color-muted)" }}>
+                University of Sargodha (BS IT)
+              </div>
+            </div>
 
-            {[...timeline].reverse().map((event, idx) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.07, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  position: "relative",
-                  marginBottom: "1.75rem",
-                  paddingLeft: "1.25rem",
-                }}
-              >
-                {/* Dot */}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "-1.5rem",
-                    top: "4px",
-                    width: "10px",
-                    height: "10px",
-                    borderRadius: "50%",
-                    background: typeColors[event.type] || "#5E7C7B",
-                    border: "2px solid var(--color-surface)",
-                    boxShadow: `0 0 8px ${typeColors[event.type]}60`,
-                  }}
-                  aria-hidden="true"
-                />
+            <div>
+              <div style={{ fontSize: "10px", fontFamily: "var(--font-jetbrains)", color: "var(--color-secondary)", fontWeight: 600, textTransform: "uppercase", marginBottom: "3px", letterSpacing: "0.08em" }}>
+                TECHNOLOGIES
+              </div>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--color-primary)" }}>
+                20+ Full-Stack & IT
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "var(--color-muted)" }}>
+                Next.js, Node, Postgres, IT Admin
+              </div>
+            </div>
 
-                <div
-                  style={{
-                    background: "var(--color-surface-2)",
-                    border: "1px solid var(--color-border)",
-                    borderRadius: "var(--radius-lg)",
-                    padding: "1.25rem",
-                  }}
-                >
+            <div>
+              <div style={{ fontSize: "10px", fontFamily: "var(--font-jetbrains)", color: "var(--color-secondary)", fontWeight: 600, textTransform: "uppercase", marginBottom: "3px", letterSpacing: "0.08em" }}>
+                CERTIFICATION
+              </div>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--color-primary)" }}>
+                ISO 9001:2015
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "var(--color-muted)" }}>
+                WhiteDavid23 AI Web Dev Intern
+              </div>
+            </div>
+
+            <div>
+              <div style={{ fontSize: "10px", fontFamily: "var(--font-jetbrains)", color: "var(--color-secondary)", fontWeight: 600, textTransform: "uppercase", marginBottom: "3px", letterSpacing: "0.08em" }}>
+                AVAILABILITY
+              </div>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#4A9B8E" }}>
+                Full-Time & Freelance
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "var(--color-muted)" }}>
+                Ready for Immediate Onboarding
+              </div>
+            </div>
+          </div>
+
+          {/* Certificates & Key Achievements */}
+          <section style={{ marginBottom: "2.5rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "1rem" }}>
+              <Award size={18} color="var(--color-accent)" />
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text)" }}>
+                Certificates & Key Achievements
+              </h3>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "0.875rem" }}>
+              {certificates.map((cert) => {
+                const CertIcon = cert.Icon;
+                return (
                   <div
+                    key={cert.title}
                     style={{
+                      background: "var(--color-surface-2)",
+                      border: "1px solid var(--color-border)",
+                      borderRadius: "var(--radius-lg)",
+                      padding: "1.1rem",
                       display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      flexWrap: "wrap",
+                      flexDirection: "column",
                       gap: "0.5rem",
-                      marginBottom: "0.5rem",
                     }}
                   >
-                    <div>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-jetbrains)",
-                          fontSize: "9px",
-                          letterSpacing: "0.12em",
-                          color: typeColors[event.type],
-                          background: `${typeColors[event.type]}15`,
-                          padding: "2px 8px",
-                          borderRadius: "var(--radius-full)",
-                          textTransform: "uppercase",
-                          display: "inline-block",
-                          marginBottom: "6px",
-                        }}
-                      >
-                        {event.badge} {typeLabels[event.type]}
-                      </span>
-                      <h3
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          fontSize: "1rem",
-                          fontWeight: 600,
-                          color: "var(--color-text)",
-                          marginBottom: "2px",
-                        }}
-                      >
-                        {event.title}
-                      </h3>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <div
                         style={{
-                          fontSize: "0.8rem",
-                          color: "var(--color-secondary)",
-                          fontWeight: 500,
+                          width: "32px",
+                          height: "32px",
+                          borderRadius: "8px",
+                          background: `${cert.color}15`,
+                          color: cert.color,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
                         }}
                       >
-                        {event.organization}
-                        {event.location && ` · ${event.location}`}
+                        <CertIcon size={16} />
+                      </div>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "var(--color-text)" }}>
+                          {cert.title}
+                        </div>
+                        <div style={{ fontSize: "0.75rem", color: "var(--color-secondary)", fontWeight: 500 }}>
+                          {cert.issuer} · {cert.date}
+                        </div>
                       </div>
                     </div>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-jetbrains)",
-                        fontSize: "11px",
-                        color: "var(--color-muted)",
-                        whiteSpace: "nowrap",
-                        background: "var(--color-surface)",
-                        padding: "3px 10px",
-                        borderRadius: "var(--radius-full)",
-                        border: "1px solid var(--color-border)",
-                      }}
-                    >
-                      {event.period}
-                    </span>
+                    <p style={{ fontSize: "0.8rem", color: "var(--color-muted)", lineHeight: 1.5, marginTop: "2px" }}>
+                      {cert.description}
+                    </p>
                   </div>
+                );
+              })}
+            </div>
+          </section>
 
-                  <p
+          {/* Experience & Education Timeline */}
+          <section>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "1.25rem" }}>
+              <Briefcase size={18} color="var(--color-primary)" />
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text)" }}>
+                Experience & Education Timeline
+              </h3>
+            </div>
+
+            <div style={{ position: "relative", paddingLeft: "1.5rem" }}>
+              {/* Vertical line */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "6px",
+                  top: 0,
+                  bottom: 0,
+                  width: "1px",
+                  background:
+                    "linear-gradient(180deg, var(--color-accent), var(--color-secondary), transparent)",
+                  opacity: 0.3,
+                }}
+                aria-hidden="true"
+              />
+
+              {[...timeline].reverse().map((event, idx) => {
+                const ItemIcon = iconMap[event.iconName] || Briefcase;
+                const dotColor =
+                  event.type === "education"
+                    ? "#5E7C7B"
+                    : event.type === "work"
+                    ? "#4A9B8E"
+                    : "#D97757";
+
+                return (
+                  <motion.div
+                    key={event.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.07, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     style={{
-                      fontSize: "0.875rem",
-                      color: "var(--color-muted)",
-                      lineHeight: 1.6,
-                      marginBottom: event.highlights ? "0.75rem" : 0,
+                      position: "relative",
+                      marginBottom: "1.5rem",
+                      paddingLeft: "1.25rem",
                     }}
                   >
-                    {event.description}
-                  </p>
+                    {/* Dot */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "-1.5rem",
+                        top: "4px",
+                        width: "10px",
+                        height: "10px",
+                        borderRadius: "50%",
+                        background: dotColor,
+                        border: "2px solid var(--color-surface)",
+                        boxShadow: `0 0 8px ${dotColor}60`,
+                      }}
+                      aria-hidden="true"
+                    />
 
-                  {event.highlights && (
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                      {event.highlights.map((h) => (
+                    <div
+                      style={{
+                        background: "var(--color-surface-2)",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: "var(--radius-lg)",
+                        padding: "1.25rem",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "flex-start",
+                          flexWrap: "wrap",
+                          gap: "0.5rem",
+                          marginBottom: "0.5rem",
+                        }}
+                      >
+                        <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                          <div
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                              borderRadius: "8px",
+                              background: `${dotColor}15`,
+                              color: dotColor,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexShrink: 0,
+                              marginTop: "2px",
+                            }}
+                          >
+                            <ItemIcon size={16} />
+                          </div>
+                          <div>
+                            <span
+                              style={{
+                                fontFamily: "var(--font-jetbrains)",
+                                fontSize: "9px",
+                                letterSpacing: "0.12em",
+                                color: dotColor,
+                                background: `${dotColor}12`,
+                                padding: "2px 8px",
+                                borderRadius: "var(--radius-full)",
+                                textTransform: "uppercase",
+                                display: "inline-block",
+                                marginBottom: "4px",
+                              }}
+                            >
+                              {event.type.toUpperCase()}
+                            </span>
+                            <h4
+                              style={{
+                                fontFamily: "var(--font-heading)",
+                                fontSize: "1rem",
+                                fontWeight: 600,
+                                color: "var(--color-text)",
+                                marginBottom: "2px",
+                              }}
+                            >
+                              {event.title}
+                            </h4>
+                            <div
+                              style={{
+                                fontSize: "0.8rem",
+                                color: "var(--color-secondary)",
+                                fontWeight: 500,
+                              }}
+                            >
+                              {event.organization}
+                              {event.location && ` · ${event.location}`}
+                            </div>
+                          </div>
+                        </div>
+
                         <span
-                          key={h}
                           style={{
+                            fontFamily: "var(--font-jetbrains)",
                             fontSize: "11px",
-                            color: "var(--color-secondary)",
-                            background: "rgba(94,124,123,0.08)",
-                            border: "1px solid rgba(94,124,123,0.15)",
-                            padding: "2px 10px",
+                            color: "var(--color-muted)",
+                            whiteSpace: "nowrap",
+                            background: "var(--color-surface)",
+                            padding: "3px 10px",
                             borderRadius: "var(--radius-full)",
+                            border: "1px solid var(--color-border)",
                           }}
                         >
-                          {h}
+                          {event.period}
                         </span>
-                      ))}
+                      </div>
+
+                      <p
+                        style={{
+                          fontSize: "0.875rem",
+                          color: "var(--color-muted)",
+                          lineHeight: 1.6,
+                          marginBottom: event.highlights ? "0.75rem" : 0,
+                          marginTop: "0.5rem",
+                        }}
+                      >
+                        {event.description}
+                      </p>
+
+                      {event.highlights && (
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                          {event.highlights.map((h) => (
+                            <span
+                              key={h}
+                              style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "4px",
+                                fontSize: "11px",
+                                color: "var(--color-secondary)",
+                                background: "rgba(94,124,123,0.08)",
+                                border: "1px solid rgba(94,124,123,0.15)",
+                                padding: "2px 10px",
+                                borderRadius: "var(--radius-full)",
+                              }}
+                            >
+                              <CheckCircle2 size={11} color={dotColor} /> {h}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </section>
         </motion.div>
       </motion.div>
     </AnimatePresence>

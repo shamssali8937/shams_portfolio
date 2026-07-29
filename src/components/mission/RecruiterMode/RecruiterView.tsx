@@ -2,11 +2,35 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { GitBranch, Link2, Mail, MapPin, Download, ExternalLink, ArrowLeft } from "lucide-react";
+import {
+  GitBranch,
+  Link2,
+  Mail,
+  MapPin,
+  Download,
+  ExternalLink,
+  ArrowLeft,
+  GraduationCap,
+  Code,
+  Briefcase,
+  Rocket,
+  Trophy,
+  Award,
+  LucideIcon,
+} from "lucide-react";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
 import { timeline } from "@/data/timeline";
+
+const iconMap: Record<string, LucideIcon> = {
+  GraduationCap,
+  Code,
+  Briefcase,
+  Rocket,
+  Trophy,
+  Award,
+};
 
 export default function RecruiterView() {
   return (
@@ -60,19 +84,53 @@ export default function RecruiterView() {
         {/* Header */}
         <header style={{ marginBottom: "3rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1.5rem" }}>
-            <div>
+            <div style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
               <div
                 style={{
-                  fontFamily: "var(--font-jetbrains)",
-                  fontSize: "10px",
-                  letterSpacing: "0.2em",
-                  color: "var(--color-accent)",
-                  textTransform: "uppercase",
-                  marginBottom: "8px",
+                  width: "72px",
+                  height: "72px",
+                  borderRadius: "50%",
+                  background: "linear-gradient(135deg, #254441 0%, #5E7C7B 100%)",
+                  border: "2px solid var(--color-border-md)",
+                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  boxShadow: "var(--shadow-md)",
                 }}
               >
-                RECRUITER MODE — CLEAN VIEW
+                <img
+                  src={profile.avatarUrl}
+                  alt={profile.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.endsWith(".jpeg")) {
+                      target.src = "/images/avatar.jpg";
+                    } else if (target.src.endsWith(".jpg")) {
+                      target.src = "/images/avatar.png";
+                    } else {
+                      target.style.display = "none";
+                    }
+                  }}
+                />
+                <span style={{ position: "absolute", zIndex: -1, fontSize: "28px" }}>🧑‍🚀</span>
               </div>
+
+              <div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-jetbrains)",
+                    fontSize: "10px",
+                    letterSpacing: "0.2em",
+                    color: "var(--color-accent)",
+                    textTransform: "uppercase",
+                    marginBottom: "4px",
+                  }}
+                >
+                  RECRUITER MODE — CLEAN VIEW
+                </div>
               <h1
                 style={{
                   fontFamily: "var(--font-heading)",
@@ -111,8 +169,9 @@ export default function RecruiterView() {
                 </span>
               </div>
             </div>
+          </div>
 
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <a
                 href={profile.resumeUrl}
                 download
@@ -292,32 +351,48 @@ export default function RecruiterView() {
             Experience & Education
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            {[...timeline].reverse().map((event) => (
-              <div
-                key={event.id}
-                style={{
-                  background: "var(--color-surface)",
-                  border: "1px solid var(--color-border)",
-                  borderRadius: "var(--radius-lg)",
-                  padding: "1.25rem",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  gap: "1rem",
-                  flexWrap: "wrap",
-                }}
-              >
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "4px" }}>
-                    <span style={{ fontSize: "16px" }}>{event.badge}</span>
-                    <h3 style={{ fontWeight: 600, fontSize: "0.9375rem", color: "var(--color-text)" }}>{event.title}</h3>
+            {[...timeline].reverse().map((event) => {
+              const IconComp = iconMap[event.iconName] || Briefcase;
+              return (
+                <div
+                  key={event.id}
+                  style={{
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: "var(--radius-lg)",
+                    padding: "1.25rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    gap: "1rem",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "4px" }}>
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: "26px",
+                          height: "26px",
+                          borderRadius: "6px",
+                          background: "rgba(37,68,65,0.08)",
+                          color: "var(--color-primary)",
+                        }}
+                      >
+                        <IconComp size={14} />
+                      </span>
+                      <h3 style={{ fontWeight: 600, fontSize: "0.9375rem", color: "var(--color-text)" }}>{event.title}</h3>
+                    </div>
+                    <div style={{ fontSize: "0.875rem", color: "var(--color-secondary)", fontWeight: 500, marginBottom: "4px" }}>{event.organization}{event.location && ` · ${event.location}`}</div>
+                    <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", lineHeight: 1.6 }}>{event.description}</p>
                   </div>
-                  <div style={{ fontSize: "0.875rem", color: "var(--color-secondary)", fontWeight: 500, marginBottom: "4px" }}>{event.organization}{event.location && ` · ${event.location}`}</div>
-                  <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", lineHeight: 1.6 }}>{event.description}</p>
+                  <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "11px", color: "var(--color-muted)", whiteSpace: "nowrap", background: "var(--color-surface-2)", padding: "3px 10px", borderRadius: "var(--radius-full)", border: "1px solid var(--color-border)" }}>{event.period}</span>
                 </div>
-                <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "11px", color: "var(--color-muted)", whiteSpace: "nowrap", background: "var(--color-surface-2)", padding: "3px 10px", borderRadius: "var(--radius-full)", border: "1px solid var(--color-border)" }}>{event.period}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       </div>

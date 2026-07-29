@@ -42,6 +42,10 @@ export const metadata: Metadata = {
     title: "Shams Sali — Mission Control",
     description: "Full-Stack Developer. Navigating ideas through code.",
   },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
   robots: {
     index: true,
     follow: true,

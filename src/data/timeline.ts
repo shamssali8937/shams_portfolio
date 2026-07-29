@@ -9,7 +9,7 @@ export interface TimelineEvent {
   year: number;
   description: string;
   highlights?: string[];
-  badge?: string;
+  iconName: "GraduationCap" | "Code" | "Briefcase" | "Rocket" | "Trophy" | "Award";
 }
 
 export const timeline: TimelineEvent[] = [
@@ -22,14 +22,14 @@ export const timeline: TimelineEvent[] = [
     period: "2022 – 2026",
     year: 2022,
     description:
-      "Graduating with a CGPA of 3.52 / 4.00. Specialized in software engineering, database systems, network administration, and full-stack web development.",
+      "Graduating with a CGPA of 3.52 / 4.00. Specialized in web engineering, database systems, network administration, and full-stack web development.",
     highlights: [
       "CGPA: 3.52 / 4.00",
       "Web Engineering & Systems",
-      "Database Systems & Prisma",
-      "Computer Networks & IT",
+      "Database Systems & Prisma ORM",
+      "Computer Networks & IT Admin",
     ],
-    badge: "🎓",
+    iconName: "GraduationCap",
   },
   {
     id: "careerbridge-dev",
@@ -47,7 +47,7 @@ export const timeline: TimelineEvent[] = [
       "Cloudinary Resume & Media Integration",
       "Redux Toolkit State Management",
     ],
-    badge: "⚡",
+    iconName: "Code",
   },
   {
     id: "whitedavid23-internship",
@@ -65,7 +65,7 @@ export const timeline: TimelineEvent[] = [
       "Leveraged AI coding & dev tools",
       "Admin, Owner & Tenant Modules",
     ],
-    badge: "💼",
+    iconName: "Briefcase",
   },
   {
     id: "dewan-traders-freelance",
@@ -83,7 +83,7 @@ export const timeline: TimelineEvent[] = [
       "PKR/USD Multi-Currency Support",
       "Resend Email Notifications & JWT",
     ],
-    badge: "🚀",
+    iconName: "Rocket",
   },
   {
     id: "leadership-sports",
@@ -97,9 +97,9 @@ export const timeline: TimelineEvent[] = [
       "Active contributor to open-source software projects and developer communities. Competitive basketball player demonstrating teamwork, discipline, resilience, and leadership skills.",
     highlights: [
       "Open-source contributions",
-      "Competitive Basketball Player",
+      "Competitive Basketball Athlete",
       "Teamwork & Leadership",
     ],
-    badge: "🏀",
+    iconName: "Trophy",
   },
 ];

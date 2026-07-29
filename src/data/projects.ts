@@ -48,6 +48,7 @@ export const projects: Project[] = [
     status: "Live",
     links: {
       github: "https://github.com/shamssali8937/careerbidge",
+      live: "https://career-brigde-next.vercel.app/"
     },
     planet: {
       color: "#4A9B8E",
@@ -85,6 +86,7 @@ export const projects: Project[] = [
     status: "Live",
     links: {
       github: "https://github.com/shamssali8937/pgnexus",
+      live: "https://pg-room-platform.vercel.app/",
     },
     planet: {
       color: "#C4956A",

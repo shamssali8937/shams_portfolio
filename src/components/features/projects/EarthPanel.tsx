@@ -62,26 +62,40 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
               marginBottom: "2rem",
             }}
           >
-            {/* Avatar placeholder */}
+            {/* Profile Avatar / Photo */}
             <div
               style={{
-                width: "80px",
-                height: "80px",
+                width: "84px",
+                height: "84px",
                 borderRadius: "50%",
-                background:
-                  "linear-gradient(135deg, #254441 0%, #5E7C7B 100%)",
-                border: "3px solid rgba(217,119,87,0.3)",
+                background: "linear-gradient(135deg, #254441 0%, #5E7C7B 100%)",
+                border: "3px solid rgba(217,119,87,0.4)",
                 flexShrink: 0,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "32px",
                 boxShadow: "0 0 24px rgba(37,68,65,0.4)",
+                overflow: "hidden",
               }}
               aria-label="Profile avatar"
-              role="img"
             >
-              🧑‍🚀
+              <img
+                src={profile.avatarUrl}
+                alt={profile.name}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  if (target.src.endsWith(".jpeg")) {
+                    target.src = "/images/avatar.jpg";
+                  } else if (target.src.endsWith(".jpg")) {
+                    target.src = "/images/avatar.png";
+                  } else {
+                    target.style.display = "none";
+                  }
+                }}
+              />
+              <span style={{ position: "absolute", zIndex: -1 }}>🧑‍🚀</span>
             </div>
 
             <div style={{ flex: 1 }}>

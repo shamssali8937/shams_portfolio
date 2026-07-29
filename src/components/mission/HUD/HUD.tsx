@@ -41,14 +41,15 @@ export default function HUD() {
         aria-label="Mission Control HUD"
       >
         <div className="glass-dark rounded-full px-4 py-2 flex items-center gap-3">
+          <img src="/icon.svg" alt="Mission Control Brand Icon" style={{ width: "20px", height: "20px", borderRadius: "50%" }} />
           <span className="hud-dot" aria-hidden="true" />
           <span className="hud-text">MISSION CONTROL</span>
           <span className="hud-line w-8" aria-hidden="true" />
           <span
             className="hud-text"
-            style={{ color: "rgba(230,177,126,0.7)" }}
+            style={{ color: "rgba(230,177,126,0.85)", fontWeight: 600 }}
           >
-            SHAMS SALI
+            SHAMS ALI MEHDI
           </span>
         </div>
 
