@@ -355,15 +355,57 @@ code, pre, kbd {
   }
 }
 
-/* ─── Mobile Overrides ──────────────────────────────────────── */
+/* ─── Responsive Media Queries ────────────────────────────────── */
 @media (max-width: 768px) {
   .hud-bar {
-    padding: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .hud-line {
+    display: none;
   }
 
   .panel-card {
-    width: 96vw;
-    max-height: 90vh;
-    border-radius: var(--radius-xl);
+    width: 96vw !important;
+    max-height: 92vh !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 1.25rem 1rem !important;
+  }
+
+  .panel-overlay {
+    padding: 0.5rem;
   }
 }
+
+@media (max-width: 640px) {
+  /* Scale typography on mobile */
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.35rem !important; }
+  h3 { font-size: 1.1rem !important; }
+
+  /* Stack flex headers */
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Grid single column on small screens */
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Compact HUD elements */
+  .hud-text {
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  /* Touch optimization */
+  button, a {
+    min-height: 38px;
+    touch-action: manipulation;
+  }
+}
+

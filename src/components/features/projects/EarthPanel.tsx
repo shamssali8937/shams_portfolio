@@ -55,6 +55,7 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
 
           {/* Profile header */}
           <div
+            className="mobile-stack"
             style={{
               display: "flex",
               gap: "1.5rem",

@@ -77,18 +77,18 @@ export default function HUD() {
         <div className="hud-line" aria-hidden="true" />
 
         <nav
-          className="glass-dark rounded-full px-4 py-2 flex items-center gap-4"
+          className="glass-dark rounded-full px-3 py-1.5 flex items-center gap-2 sm:gap-4 flex-wrap"
           aria-label="Quick navigation hints"
         >
-          <span className="hud-text">CLICK PLANET TO EXPLORE</span>
+          <span className="hud-text">TAP PLANET TO EXPLORE</span>
           <span
-            className="hud-text"
+            className="hud-text hidden sm:inline"
             style={{ color: "rgba(255,255,255,0.2)" }}
             aria-hidden="true"
           >
             ·
           </span>
-          <span className="hud-text">
+          <span className="hud-text hidden sm:inline">
             PRESS{" "}
             <kbd
               style={{
@@ -105,9 +105,9 @@ export default function HUD() {
           </span>
         </nav>
 
-        <div className="hud-line" aria-hidden="true" />
+        <div className="hud-line hidden md:block" aria-hidden="true" />
 
-        <div className="glass-dark rounded-full px-4 py-2">
+        <div className="glass-dark rounded-full px-3 py-1.5 hidden sm:block">
           <span
             className="hud-text"
             aria-label={`Cursor position: ${coords.x}° longitude, ${coords.y}° latitude`}
@@ -118,12 +118,13 @@ export default function HUD() {
         </div>
       </footer>
 
-      {/* Radar — floating above bottom-right */}
+      {/* Radar — floating above bottom-right (hidden on very small mobile) */}
       <div
+        className="hidden md:block"
         style={{
           position: "fixed",
-          bottom: "4rem",
-          right: "1.5rem",
+          bottom: "4.25rem",
+          right: "1.25rem",
           zIndex: "var(--z-hud)",
         }}
         aria-hidden="true"
@@ -132,11 +133,11 @@ export default function HUD() {
           className="glass-dark"
           style={{
             borderRadius: "50%",
-            padding: "6px",
-            border: "1px solid rgba(94,124,123,0.2)",
+            padding: "5px",
+            border: "1px solid rgba(94,124,123,0.25)",
           }}
         >
-          <Radar size={120} />
+          <Radar size={110} />
         </div>
       </div>
     </>
