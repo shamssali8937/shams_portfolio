@@ -302,21 +302,21 @@ export default function RecruiterView({ onExit }: RecruiterViewProps) {
                   flexWrap: "wrap",
                 }}
               >
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "4px" }}>
-                    <h3 style={{ fontWeight: 600, fontSize: "1rem", color: "var(--color-text)" }}>{p.name}</h3>
-                    <span style={{ fontSize: "11px", color: p.status === "Live" ? "#4A9B8E" : "var(--color-accent)", background: p.status === "Live" ? "rgba(74,155,142,0.1)" : "rgba(217,119,87,0.1)", padding: "1px 8px", borderRadius: "var(--radius-full)", border: `1px solid ${p.status === "Live" ? "rgba(74,155,142,0.25)" : "rgba(217,119,87,0.25)"}` }}>{p.status}</span>
+                <div style={{ flex: "1 1 240px", minWidth: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "6px", flexWrap: "wrap" }}>
+                    <h3 style={{ fontWeight: 600, fontSize: "1.05rem", color: "var(--color-text)" }}>{p.name}</h3>
+                    <span style={{ fontSize: "11px", color: p.status === "Live" ? "#4A9B8E" : "var(--color-accent)", background: p.status === "Live" ? "rgba(74,155,142,0.1)" : "rgba(217,119,87,0.1)", padding: "2px 8px", borderRadius: "var(--radius-full)", border: `1px solid ${p.status === "Live" ? "rgba(74,155,142,0.25)" : "rgba(217,119,87,0.25)"}` }}>{p.status}</span>
                   </div>
-                  <p style={{ fontSize: "0.875rem", color: "var(--color-muted)", lineHeight: 1.6, marginBottom: "0.5rem" }}>{p.description}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+                  <p style={{ fontSize: "0.875rem", color: "var(--color-muted)", lineHeight: 1.6, marginBottom: "0.75rem" }}>{p.description}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 4px" }}>
                     {p.stack.map((t) => (
-                      <span key={t} style={{ fontFamily: "var(--font-jetbrains)", fontSize: "10px", color: "var(--color-muted)", background: "var(--color-surface-2)", padding: "1px 7px", borderRadius: "var(--radius-sm)", border: "1px solid var(--color-border)" }}>{t}</span>
+                      <span key={t} style={{ fontFamily: "var(--font-jetbrains)", fontSize: "10px", color: "var(--color-muted)", background: "var(--color-surface-2)", padding: "2px 8px", borderRadius: "var(--radius-sm)", border: "1px solid var(--color-border)", whiteSpace: "nowrap" }}>{t}</span>
                     ))}
                   </div>
                 </div>
-                <div style={{ display: "flex", gap: "0.5rem" }}>
-                  {p.links.github && <a href={p.links.github} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} GitBranch`} style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "var(--color-muted)", textDecoration: "none", padding: "5px 10px", borderRadius: "var(--radius-full)", border: "1px solid var(--color-border)" }}><GitBranch size={12} /> Code</a>}
-                  {p.links.live && <a href={p.links.live} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} live`} style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#fff", textDecoration: "none", padding: "5px 10px", borderRadius: "var(--radius-full)", background: "var(--color-primary)" }}><ExternalLink size={12} /> Live</a>}
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "4px" }}>
+                  {p.links.github && <a href={p.links.github} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} GitBranch`} style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "var(--color-muted)", textDecoration: "none", padding: "6px 12px", borderRadius: "var(--radius-full)", border: "1px solid var(--color-border)", background: "var(--color-surface-2)" }}><GitBranch size={12} /> Code</a>}
+                  {p.links.live && <a href={p.links.live} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} live`} style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#fff", textDecoration: "none", padding: "6px 12px", borderRadius: "var(--radius-full)", background: "var(--color-primary)" }}><ExternalLink size={12} /> Live</a>}
                 </div>
               </div>
             ))}
