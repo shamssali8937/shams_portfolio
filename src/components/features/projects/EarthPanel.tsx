@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Download, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 
 interface EarthPanelProps {
@@ -41,13 +41,15 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
               background: "var(--color-surface-2)",
               border: "1px solid var(--color-border)",
               borderRadius: "50%",
-              width: "36px",
-              height: "36px",
+              width: "40px",
+              height: "40px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
               color: "var(--color-muted)",
+              zIndex: 20,
+              touchAction: "manipulation",
             }}
           >
             <X size={16} />
@@ -219,10 +221,8 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
 
           {/* Stats */}
           <div
+            className="profile-stats-grid"
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "0.75rem",
               marginBottom: "1.5rem",
             }}
           >
@@ -236,17 +236,24 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
                   background: "var(--color-surface-2)",
                   border: "1px solid var(--color-border)",
                   borderRadius: "var(--radius-md)",
-                  padding: "0.875rem",
+                  padding: "0.75rem 0.6rem",
                   textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  minWidth: 0,
                 }}
               >
                 <div
                   style={{
                     fontFamily: "var(--font-heading)",
-                    fontSize: "1.25rem",
+                    fontSize: "1.1rem",
                     fontWeight: 700,
                     color: "var(--color-primary)",
-                    marginBottom: "4px",
+                    marginBottom: "3px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {stat.value}
@@ -255,9 +262,12 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
                   style={{
                     fontFamily: "var(--font-jetbrains)",
                     fontSize: "9px",
-                    letterSpacing: "0.1em",
+                    letterSpacing: "0.08em",
                     color: "var(--color-muted)",
                     textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {stat.label}
@@ -277,16 +287,21 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
                 letterSpacing: "0.1em",
                 color: "var(--color-surface)",
                 background: "var(--color-primary)",
-                padding: "10px 20px",
+                padding: "11px 20px",
                 borderRadius: "var(--radius-full)",
                 textDecoration: "none",
                 textTransform: "uppercase",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "6px",
+                justifyContent: "center",
+                gap: "8px",
+                flex: "1 1 160px",
+                minHeight: "42px",
+                textAlign: "center",
               }}
             >
-              ↓ Download Resume
+              <Download size={14} />
+              Download Resume
             </a>
             <a
               href={`mailto:${profile.email}`}
@@ -295,18 +310,23 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
                 fontSize: "11px",
                 letterSpacing: "0.1em",
                 color: "var(--color-primary)",
-                background: "transparent",
-                padding: "10px 20px",
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border-md)",
+                padding: "11px 20px",
                 borderRadius: "var(--radius-full)",
                 textDecoration: "none",
                 textTransform: "uppercase",
-                border: "1px solid var(--color-border-md)",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "6px",
+                justifyContent: "center",
+                gap: "8px",
+                flex: "1 1 160px",
+                minHeight: "42px",
+                textAlign: "center",
               }}
             >
-              ✉ Get In Touch
+              <Mail size={14} />
+              Get In Touch
             </a>
           </div>
         </motion.div>

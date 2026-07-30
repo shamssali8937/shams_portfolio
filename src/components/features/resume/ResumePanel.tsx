@@ -147,13 +147,15 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   background: "var(--color-surface-2)",
                   border: "1px solid var(--color-border)",
                   borderRadius: "50%",
-                  width: "36px",
-                  height: "36px",
+                  width: "40px",
+                  height: "40px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   cursor: "pointer",
                   color: "var(--color-muted)",
+                  zIndex: 20,
+                  touchAction: "manipulation",
                 }}
               >
                 <X size={16} />
@@ -232,7 +234,7 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
               </h3>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "0.875rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))", gap: "0.875rem" }}>
               {certificates.map((cert) => {
                 const CertIcon = cert.Icon;
                 return (
@@ -313,8 +315,8 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   event.type === "education"
                     ? "#5E7C7B"
                     : event.type === "work"
-                    ? "#4A9B8E"
-                    : "#D97757";
+                      ? "#4A9B8E"
+                      : "#D97757";
 
                 return (
                   <motion.div

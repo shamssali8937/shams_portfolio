@@ -89,24 +89,25 @@ export default function SkillsPanel({ onClose }: SkillsPanelProps) {
                 background: "var(--color-surface-2)",
                 border: "1px solid var(--color-border)",
                 borderRadius: "50%",
-                width: "36px",
-                height: "36px",
+                width: "40px",
+                height: "40px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
                 color: "var(--color-muted)",
+                zIndex: 20,
+                touchAction: "manipulation",
               }}
             >
               <X size={16} />
             </button>
           </div>
 
-          {/* Skills Grid */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
               gap: "1rem",
             }}
           >

@@ -32,7 +32,11 @@ const iconMap: Record<string, LucideIcon> = {
   Award,
 };
 
-export default function RecruiterView() {
+interface RecruiterViewProps {
+  onExit?: () => void;
+}
+
+export default function RecruiterView({ onExit }: RecruiterViewProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -55,32 +59,6 @@ export default function RecruiterView() {
           padding: "4rem 2rem 6rem",
         }}
       >
-        {/* Navigation link back to 3D scene */}
-        <div style={{ marginBottom: "1.5rem" }}>
-          <Link
-            href="/"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              fontFamily: "var(--font-jetbrains), monospace",
-              fontSize: "11px",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--color-secondary)",
-              textDecoration: "none",
-              background: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
-              padding: "6px 14px",
-              borderRadius: "var(--radius-full)",
-              transition: "all 0.2s ease",
-            }}
-          >
-            <ArrowLeft size={12} />
-            3D Mission Control
-          </Link>
-        </div>
-
         {/* Header */}
         <header style={{ marginBottom: "3rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1.5rem" }}>
