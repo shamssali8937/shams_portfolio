@@ -40,22 +40,22 @@ export default function HUD() {
         role="banner"
         aria-label="Mission Control HUD"
       >
-        <div className="glass-dark rounded-full px-4 py-2 flex items-center gap-3">
-          <img src="/icon.svg" alt="Mission Control Brand Icon" style={{ width: "20px", height: "20px", borderRadius: "50%" }} />
+        <div className="glass-dark rounded-full px-3 py-1.5 sm:px-4 sm:py-2 flex items-center gap-2 sm:gap-3">
+          <img src="/icon.svg" alt="Mission Control Brand Icon" style={{ width: "18px", height: "18px", borderRadius: "50%" }} />
           <span className="hud-dot" aria-hidden="true" />
-          <span className="hud-text">MISSION CONTROL</span>
-          <span className="hud-line w-8" aria-hidden="true" />
+          <span className="hud-text" style={{ whiteSpace: "nowrap" }}>MISSION CONTROL</span>
+          <span className="hud-line w-8 hidden sm:inline" aria-hidden="true" />
           <span
-            className="hud-text"
-            style={{ color: "rgba(230,177,126,0.85)", fontWeight: 600 }}
+            className="hud-text hidden sm:inline"
+            style={{ color: "rgba(230,177,126,0.85)", fontWeight: 600, whiteSpace: "nowrap" }}
           >
             SHAMS ALI MEHDI
           </span>
         </div>
 
-        <div className="hud-line" aria-hidden="true" />
+        <div className="hud-line hidden md:block" aria-hidden="true" />
 
-        <div className="glass-dark rounded-full px-4 py-2">
+        <div className="glass-dark rounded-full px-4 py-2 hidden sm:block">
           <span className="hud-text" aria-label={`Current time: ${time}`}>
             {time}
           </span>

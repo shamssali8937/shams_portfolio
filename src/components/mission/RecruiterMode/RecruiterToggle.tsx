@@ -13,10 +13,9 @@ export default function RecruiterToggle({ isActive, onToggle }: RecruiterToggleP
 
   return (
     <div
+      className="recruiter-toggle-wrapper"
       style={{
         position: "fixed",
-        top: "4.25rem",
-        right: "1.25rem",
         // Must sit above RecruiterView overlay (z-overlay = 2000) when active
         zIndex: isActive ? 3000 : 50,
         display: "flex",

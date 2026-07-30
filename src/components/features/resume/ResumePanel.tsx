@@ -315,8 +315,8 @@ export default function ResumePanel({ onClose }: ResumePanelProps) {
                   event.type === "education"
                     ? "#5E7C7B"
                     : event.type === "work"
-                    ? "#4A9B8E"
-                    : "#D97757";
+                      ? "#4A9B8E"
+                      : "#D97757";
 
                 return (
                   <motion.div
