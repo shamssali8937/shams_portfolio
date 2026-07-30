@@ -145,19 +145,20 @@ export default function MissionControl() {
         <LaunchSequence onComplete={() => setLaunched(true)} />
       )}
 
-      {/* Main scene (renders underneath launch sequence) */}
-      <AnimatePresence>
-        {launched && !recruiterMode && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            style={{ position: "fixed", inset: 0 }}
-          >
-            <Scene onPlanetClick={handlePlanetClick} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Main 3D Space Scene — pre-mounted for instant WebGL canvas & texture preloading */}
+      {!recruiterMode && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            opacity: launched ? 1 : 0.25,
+            transition: "opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            pointerEvents: launched ? "auto" : "none",
+          }}
+        >
+          <Scene onPlanetClick={handlePlanetClick} />
+        </div>
+      )}
 
       {/* Recruiter mode overlay */}
       <AnimatePresence>

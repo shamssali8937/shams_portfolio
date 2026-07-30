@@ -109,47 +109,47 @@ export default function RecruiterView({ onExit }: RecruiterViewProps) {
                 >
                   RECRUITER MODE — CLEAN VIEW
                 </div>
-              <h1
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontSize: "3rem",
-                  fontWeight: 700,
-                  color: "var(--color-text)",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1.1,
-                  marginBottom: "0.5rem",
-                }}
-              >
-                {profile.name}
-              </h1>
-              <p
-                style={{
-                  fontSize: "1.2rem",
-                  color: "var(--color-secondary)",
-                  fontWeight: 500,
-                  marginBottom: "1rem",
-                }}
-              >
-                {profile.title}
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <span
+                <h1
                   style={{
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    background: "#4A9B8E",
-                    animation: "pulse-dot 2s infinite",
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "3rem",
+                    fontWeight: 700,
+                    color: "var(--color-text)",
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.1,
+                    marginBottom: "0.5rem",
                   }}
-                />
-                <span style={{ fontSize: "0.875rem", color: "#4A9B8E", fontWeight: 500 }}>
-                  {profile.status}
-                </span>
+                >
+                  {profile.name}
+                </h1>
+                <p
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "var(--color-secondary)",
+                    fontWeight: 500,
+                    marginBottom: "1rem",
+                  }}
+                >
+                  {profile.title}
+                </p>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                  <span
+                    style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      background: "#4A9B8E",
+                      animation: "pulse-dot 2s infinite",
+                    }}
+                  />
+                  <span style={{ fontSize: "0.875rem", color: "#4A9B8E", fontWeight: 500 }}>
+                    {profile.status}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <a
                 href={profile.resumeUrl}
                 download
