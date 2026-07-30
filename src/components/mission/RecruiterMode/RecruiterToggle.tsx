@@ -1,29 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface RecruiterToggleProps {
+  isActive: boolean;
   onToggle: (active: boolean) => void;
 }
 
-export default function RecruiterToggle({ onToggle }: RecruiterToggleProps) {
-  const [active, setActive] = useState(false);
+export default function RecruiterToggle({ isActive, onToggle }: RecruiterToggleProps) {
   const [showTooltip, setShowTooltip] = useState(false);
-
-  const handleToggle = () => {
-    const next = !active;
-    setActive(next);
-    onToggle(next);
-  };
 
   return (
     <div
       style={{
         position: "fixed",
-        bottom: "4.5rem",
-        right: "1.5rem",
-        zIndex: "var(--z-hud)",
+        top: "4.25rem",
+        right: "1.25rem",
+        // Must sit above RecruiterView overlay (z-overlay = 2000) when active
+        zIndex: isActive ? 3000 : 50,
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
@@ -50,21 +45,21 @@ export default function RecruiterToggle({ onToggle }: RecruiterToggleProps) {
               whiteSpace: "nowrap",
             }}
           >
-            {active ? "Back to Mission Control" : "Switch to Recruiter Mode"}
+            {isActive ? "Back to 3D Mission Control" : "Switch to Recruiter Mode"}
           </motion.div>
         )}
       </AnimatePresence>
 
       <motion.button
-        onClick={handleToggle}
+        onClick={() => onToggle(!isActive)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
         aria-label={
-          active ? "Exit recruiter mode" : "Enter recruiter mode — clean portfolio view"
+          isActive ? "Exit recruiter mode" : "Enter recruiter mode — clean portfolio view"
         }
-        aria-pressed={active}
+        aria-pressed={isActive}
         style={{
           display: "flex",
           alignItems: "center",
@@ -73,23 +68,23 @@ export default function RecruiterToggle({ onToggle }: RecruiterToggleProps) {
           fontSize: "10px",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
-          color: active ? "#06080F" : "rgba(255,255,255,0.7)",
-          background: active
+          color: isActive ? "#06080F" : "rgba(255,255,255,0.7)",
+          background: isActive
             ? "linear-gradient(135deg, #D97757, #E6B17E)"
             : "rgba(6,8,15,0.85)",
-          border: `1px solid ${active ? "transparent" : "rgba(255,255,255,0.08)"}`,
+          border: `1px solid ${isActive ? "transparent" : "rgba(255,255,255,0.08)"}`,
           borderRadius: "var(--radius-full)",
           padding: "8px 14px",
           cursor: "pointer",
           backdropFilter: "blur(12px)",
-          boxShadow: active
+          boxShadow: isActive
             ? "0 8px 24px rgba(217,119,87,0.35)"
             : "0 4px 12px rgba(0,0,0,0.4)",
           transition: "all 0.3s ease",
         }}
       >
-        <span aria-hidden="true">{active ? "✦" : "☰"}</span>
-        {active ? "3D MODE" : "RECRUITER MODE"}
+        <span aria-hidden="true">{isActive ? "✦" : "☰"}</span>
+        {isActive ? "3D MODE" : "RECRUITER MODE"}
       </motion.button>
     </div>
   );

@@ -161,14 +161,21 @@ export default function MissionControl() {
 
       {/* Recruiter mode overlay */}
       <AnimatePresence>
-        {recruiterMode && launched && <RecruiterView />}
+        {recruiterMode && launched && (
+          <RecruiterView onExit={() => handleRecruiterToggle(false)} />
+        )}
       </AnimatePresence>
 
       {/* HUD — always visible when launched */}
       {launched && !recruiterMode && <HUD />}
 
-      {/* Recruiter Mode Toggle */}
-      {launched && <RecruiterToggle onToggle={handleRecruiterToggle} />}
+      {/* Recruiter Mode Toggle — always accessible, instantly synced */}
+      {launched && (
+        <RecruiterToggle
+          isActive={recruiterMode}
+          onToggle={handleRecruiterToggle}
+        />
+      )}
 
       {/* Terminal */}
       <AnimatePresence>

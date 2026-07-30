@@ -41,13 +41,15 @@ export default function EarthPanel({ onClose }: EarthPanelProps) {
               background: "var(--color-surface-2)",
               border: "1px solid var(--color-border)",
               borderRadius: "50%",
-              width: "36px",
-              height: "36px",
+              width: "40px",
+              height: "40px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
               color: "var(--color-muted)",
+              zIndex: 20,
+              touchAction: "manipulation",
             }}
           >
             <X size={16} />

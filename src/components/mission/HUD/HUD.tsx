@@ -118,7 +118,7 @@ export default function HUD() {
         </div>
       </footer>
 
-      {/* Radar — floating above bottom-right (hidden on very small mobile) */}
+      {/* Radar — floating above bottom-right according to plan */}
       <div
         className="hidden md:block"
         style={{
